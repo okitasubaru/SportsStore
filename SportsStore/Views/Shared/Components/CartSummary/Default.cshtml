@@ -1,0 +1,22 @@
+﻿@using SportsStore.Models
+@using SportsStore.Models.ViewModels
+@using SportsStore.Infrastructure             @*cập nhật partial view mô tả từng sản phẩm để Add To Cart button*@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper SportsStore.Infrastructure.*, SportsStore
+
+@model SportsStore.Models.Cart
+<div class="">
+    @if (Model.Lines.Count() > 0)
+    {
+        <small class="navbar-text">
+            <b>Your cart:</b>
+            @Model.Lines.Sum(x => x.Quantity) item(s)  @*hiện số lượng mặt hàng*@
+            @Model.ComputeTotalValue().ToString("c")   @*hiện tổng giá các món hàng*@
+        </small>
+    }
+    <a class="btn btn-sm btn-secondary navbar-btn"
+       asp-controller="Cart" asp-action="Index"
+       asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+        <i class="fa fa-shopping-cart"></i>
+    </a>
+</div>

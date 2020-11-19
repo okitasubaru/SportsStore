@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet"
+          asp-href-include="/lib/bootstrap/dist/**/*.min.css"
+          asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
+    <title>SportsStore</title>
+</head>
+<body>
+    <div class="navbar navbar-inverse bg-inverse" role="navigation">
+        @*<a class="navbar-brand" href="#">SPORTS STORE</a>*@
+        <div class="row">
+            <a class="col navbar-brand" href="#">SPORTS STORE</a>
+        </div>
+        <div class="col-4 text-right">
+                @await Component.InvokeAsync("CartSummary")   @*Khi giỏ hàng trống, hiển thị  thanh toán
+                                                              Nếu có các mặt hàng vào giỏ hàng, thì số lượng mặt hàng 
+                                                               và chi phí kết hợp của chúng sẽ được hiển thị*@
+        </div>
+        
+    </div>
+    <div class="row m-1 p-1">
+        <div id="categories" class="col-3">
+            <!--Put something useful here later -->
+            @await Component.InvokeAsync("NavigationMenu")      <!-- gọi hàm invoke được thì load lên phần navigation menu view lên -->
+        </div>
+        <div class="col-9">
+            @RenderBody() <!-- lay view qua su dung qua day-->
+        </div>
+    </div>
+</body>
+</html>

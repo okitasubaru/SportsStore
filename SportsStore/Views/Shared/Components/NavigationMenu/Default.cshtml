@@ -1,0 +1,20 @@
+﻿@model IEnumerable<string>
+<a class="btn btn-block btn-secondary"  
+   asp-action="List"
+   asp-controller="Products"
+   asp-route-category="">
+    Home
+</a>
+
+@foreach (string category in Model) 
+{   // tạo ra danh sách thẻ a với các điều sau 
+    <a class="btn btn-block 
+        @(category == ViewBag.SelectedCategory ? "btn-primary": "btn-secondary")"
+       & lt cho biết màu sắc nút đang được chọn (comment)
+       asp-action="List"
+       asp-controller="Products"
+       asp-route-category="@category"
+       asp-route-productPage="1">
+        @category
+    </a>
+}
